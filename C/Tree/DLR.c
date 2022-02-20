@@ -13,7 +13,7 @@ typedef struct BTNode
 BTNode *Create_BTree(void)
 {
 	BTNode *T, *p, *s[MAX_NODE];
-    char ch;
+        char ch;
 	int i,j;
 
 	while(1)
@@ -30,13 +30,13 @@ BTNode *Create_BTree(void)
 			p->data = ch;
 			p->Lchild = p->Rchild = NULL;
 			s[i] = p;
-			if (1 ==i)
+			if (1 == i)
 			{
 				T = p;
 			}
 			else
 			{
-                j = i / 2;
+                                j = i / 2;
 				if (i % 2 == 0)
 				{
 					s[j]->Lchild = p;
@@ -59,12 +59,12 @@ BTNode *Preorder_Create_BTree(BTNode **T)
 	getchar();
 	if (ch == NULLKY)
 	{
-        *T = NULL;
+                *T = NULL;
 		return *T;
 	}
 	else
 	{
-        (*T) = (BTNode *)malloc(sizeof(BTNode));
+                (*T) = (BTNode *)malloc(sizeof(BTNode));
 		(*T)->data = ch;
 		Preorder_Create_BTree(&(*T)->Lchild);
 		Preorder_Create_BTree(&(*T)->Rchild);
@@ -89,9 +89,9 @@ void PreorderTraverse(BTNode *T)
 	}
 	else
 	{
-        do
+                do
 		{
-            visit(p->data);
+                        visit(p->data);
 
 			q = p->Rchild;
 			if (q != NULL)
@@ -102,7 +102,7 @@ void PreorderTraverse(BTNode *T)
 			p = p->Lchild;
 			if (p == NULL)
 			{
-                p = stack[top];
+                                p = stack[top];
 
 				//stack[0]会被访问到，赋初始NULL
 				top--;
@@ -175,7 +175,7 @@ void PostorderTraverse(BTNode *T)
 			}
 			else
 			{
-                p = s1[top];
+                                p = s1[top];
 				top--;
 				visit(p->data);
 				p = NULL;// 使循环将继续进行而不死循环
@@ -223,10 +223,10 @@ int search_leaves(BTNode *T)
 		{
 			p = stack[top--];
 			if (p->Lchild == NULL && p->Rchild == NULL)
-		    {
+		        {
 				num++;
 			}
-            if (p->Rchild != NULL)
+                        if (p->Rchild != NULL)
 			    stack[++top] = p->Rchild;
 			if (p->Lchild != NULL)
 			    stack[++top] == p->Lchild;	
@@ -266,18 +266,18 @@ int search_depth(BTNode *T)
 }
 int main()
 {
-    BTNode * head;
+        BTNode * head;
 
 	//输入A B D ? ? E ? G ? ? C F ? ? ?
 	Preorder_Create_BTree(&head);  
 
-    printf("leafs:%d\n",search_leaves(head));
+        printf("leafs:%d\n",search_leaves(head));
 
 	printf("depths:%d\n",search_depth(head));
 
-    //PreorderTraverse(head);
+        //PreorderTraverse(head);
 	//InorderTraverse(head);
-    //PostorderTraverse(head);
+        //PostorderTraverse(head);
 	//LevelTraverse(head);
 
 	return 0;
